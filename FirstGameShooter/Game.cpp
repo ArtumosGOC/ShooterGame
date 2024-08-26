@@ -7,12 +7,12 @@ Game::Game()
     window.setSize(sf::Vector2u(1280, 720));
     window.setFramerateLimit(60);
 
-    if (!font.loadFromFile("opensans.ttf")) {
+    if (!font.loadFromFile("Data\\Font\\opensans.ttf")) {
         fprintf(stderr, "Cannot open font!\n");
         exit(EXIT_FAILURE);
     }
 
-    if (!texture.loadFromFile("walls.png")) {
+    if (!texture.loadFromFile("Data\\Texture\\walls.png")) {
         fprintf(stderr, "Cannot open texture!\n");
         exit(EXIT_FAILURE);
     }
