@@ -1,68 +1,32 @@
+// Player.cpp
 #include "Player.h"
+#include <cmath>
 
 Player::Player()
-{
-	initVariables();
-	initPlayer();
+    : position(2.5f, 2.0f), direction(0.0f, 1.0f), plane(-0.66f, 0.0f), size(0.375f, 0.375f), moveSpeed(5.0f), rotateSpeed(3.0f) {}
 
+void Player::move(float moveForward, float dt, const Map& map) {
+    if (moveForward != 0.0f) {
+        sf::Vector2f moveVec = direction * moveSpeed * moveForward * dt;
+        if (map.canMove(sf::Vector2f(position.x + moveVec.x, position.y), size)) {
+            position.x += moveVec.x;
+        }
+        if (map.canMove(sf::Vector2f(position.x, position.y + moveVec.y), size)) {
+            position.y += moveVec.y;
+        }
+    }
 }
 
-Player::~Player()
-{
-	delete this;
-}
-void Player::initVariables()
-{
-	this->points = 0;
-	this->velocity = 3.f;
-	this->maxBullets = 10;
-	this->Health = 100;
-	this->maxHealth = 100;
-	this->endGame = false;
-}
-
-void Player::initPlayer()
-{
-	this->vPlayer.setPosition(400.f, 300.f);
-	this->vPlayer.setSize(Vector2f(50.f, 50.f));
-	this->vPlayer.setFillColor(Color::Green);
-	this->vPlayer.setOutlineColor(Color::Black);
-
-}
-
-void Player::pollEvents(RenderTarget* target)
-{
-
-	if (Keyboard::isKeyPressed(Keyboard::A))
-	{
-		this->vPlayer.move(-1.f*velocity, 0.f);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::D))
-	{
-		this->vPlayer.move(1.f * velocity, 0.f);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::W))
-	{
-		this->vPlayer.move(0.f, -1.f * velocity);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::S))
-	{
-		this->vPlayer.move(0.f, 1.f * velocity);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Escape))
-	{
-		new Player();
-	}
-
-}
-
-void Player::renderPlayer(RenderTarget* target)
-{
-	target->draw(this->vPlayer);
-}
-
-void Player::updatePlayer(RenderTarget& target)
-{
-	this->pollEvents(&target);
-	this->renderPlayer(&target);
+void Player::rotate(float rotateDirection, float dt) {
+    if (rotateDirection != 0.0f) {
+        float rotation = rotateSpeed * rotateDirection * dt;
+        direction = sf::Vector2f(
+            direction.x * std::cos(rotation) - direction.y * std::sin(rotation),
+            direction.x * std::sin(rotation) + direction.y * std::cos(rotation)
+        );
+        plane = sf::Vector2f(
+            plane.x * std::cos(rotation) - plane.y * std::sin(rotation),
+            plane.x * std::sin(rotation) + plane.y * std::cos(rotation)
+        );
+    }
 }

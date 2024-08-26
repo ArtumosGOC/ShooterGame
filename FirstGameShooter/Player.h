@@ -1,36 +1,23 @@
-#pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/System/Vector3.hpp>
+// Player.h
+#ifndef PLAYER_H
+#define PLAYER_H
 
-using namespace sf;
-using namespace std;
+#include <SFML/System.hpp>
+#include "Map.h"
 
-class Player
-{
+class Player {
 public:
-	Player();
-	~Player();
+    sf::Vector2f position;
+    sf::Vector2f direction;
+    sf::Vector2f plane;
+    sf::Vector2f size;
+    float moveSpeed;
+    float rotateSpeed;
 
-	void renderPlayer(RenderTarget* target);
-	void updatePlayer(RenderTarget& target);
+    Player();
 
-	bool endGame = 0b0;
-
-	void pollEvents(RenderTarget* target);
-	RectangleShape vPlayer;
-
-private:
-	void initVariables();
-	void initPlayer();
-
-	unsigned int points;
-	unsigned int maxBullets;
-	int Health;
-	int maxHealth;
-	float velocity;
-
-
-	Event event;
-
-	vector<RectangleShape> vPlayers;
+    void move(float moveForward, float dt, const Map& map);
+    void rotate(float rotateDirection, float dt);
 };
+
+#endif // PLAYER_H
