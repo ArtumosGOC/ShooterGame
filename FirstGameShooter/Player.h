@@ -17,7 +17,7 @@ public:
     Player();
 
     void move(float moveForward, float dt, const Map& map);
+    void strafe(float moveSideways, float dt, const Map& map);
     void rotate(float rotateDirection, float dt);
 };
-
 #endif // PLAYER_H

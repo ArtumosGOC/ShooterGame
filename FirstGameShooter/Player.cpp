@@ -30,3 +30,14 @@ void Player::rotate(float rotateDirection, float dt) {
         );
     }
 }
+void Player::strafe(float moveSideways, float dt, const Map& map) {
+    if (moveSideways != 0.0f) {
+        sf::Vector2f moveVec = plane * moveSpeed * moveSideways * dt;
+        if (map.canMove(sf::Vector2f(position.x + moveVec.x, position.y), size)) {
+            position.x += moveVec.x;
+        }
+        if (map.canMove(sf::Vector2f(position.x, position.y + moveVec.y), size)) {
+            position.y += moveVec.y;
+        }
+    }
+}
