@@ -13,29 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Arquivos de Recurso\data">
+      <UniqueIdentifier>{aef30731-3355-45f3-bbb9-67d752698657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\data\font">
+      <UniqueIdentifier>{0bdb80e9-5fe9-4c29-b58e-612952044af8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Recurso\data\texture">
+      <UniqueIdentifier>{1b2dc23f-46a3-4674-8900-9adcaa5d1bb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos de Origem\Utils">
+      <UniqueIdentifier>{4fb1e949-b0dd-4513-8db2-bf09b7917f63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="WinForm.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="Game.cpp">
+      <Filter>Arquivos de Origem\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Arquivos de Origem\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Arquivos de Origem</Filter>
+      <Filter>Arquivos de Origem\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Raycasting.cpp">
-      <Filter>Arquivos de Origem</Filter>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Arquivos de Origem\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WinForm.h">
+    <Image Include="..\..\adventure3d\data\texture\walls.png">
+      <Filter>Arquivos de Recurso\data\texture</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\..\adventure3d\data\font\opensans.ttf">
+      <Filter>Arquivos de Recurso\data\font</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Map.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Raycasting.h">
+    <ClInclude Include="Renderer.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
