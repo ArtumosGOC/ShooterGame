@@ -54,22 +54,39 @@ void Game::update(float dt) {
     if (hasFocus) {
         using kb = sf::Keyboard;
         using ms = sf::Mouse;
+        shit_value = 0.8;
 
         float moveForward = 0.0f;
-        if (kb::isKeyPressed(kb::W)) {
-            moveForward = 1.0f;
+		if (kb::isKeyPressed(kb::LShift)){
+            if (kb::isKeyPressed(kb::W)) {
+                moveForward = 1.0f;
+            }
+            else if (kb::isKeyPressed(kb::S)) {
+                moveForward = -1.0f;
+            }
+            if(player.getmoveSpeed() !=0)
+                 player.move(moveForward, dt, map, 1.5);
+            else
+                player.move(moveForward, dt, map, 1);
+		}
+        else
+        {
+            if (kb::isKeyPressed(kb::W)) {
+                moveForward = 1.0f;
+            }
+            else if (kb::isKeyPressed(kb::S)) {
+                moveForward = -1.0f;
+            }
+            player.move(moveForward, dt, map, shit_value);
         }
-        else if (kb::isKeyPressed(kb::S)) {
-            moveForward = -1.0f;
-        }
-        player.move(moveForward, dt, map);
+		
 
         float moveSideways = 0.0f;
         if (kb::isKeyPressed(kb::A)) {
-            moveSideways = -1.0f;
+            moveSideways = -1.0f * shit_value;
         }
         else if (kb::isKeyPressed(kb::D)) {
-            moveSideways = 1.0f;
+            moveSideways = 1.0f * shit_value;
         }
         player.strafe(moveSideways, dt, map);
 

@@ -25,6 +25,7 @@ private:
     sf::Clock clock;
     char frameInfoString[sizeof("FPS: *****.*, Frame time: ******")];
     float dt_counter;
+    float shit_value=0.8f;
     int frame_counter;
     int64_t frame_time_micro;
     bool hasFocus;
