@@ -16,7 +16,7 @@ Game::Game()
         fprintf(stderr, "Cannot open texture!\n");
         exit(EXIT_FAILURE);
     }
-
+    
     state.texture = &texture;
     fpsText.setFont(font);
     fpsText.setCharacterSize(20);
@@ -39,43 +39,50 @@ void Game::run() {
 void Game::handleEvents() {
     sf::Event event;
     while (window.pollEvent(event)) {
-        switch (event.type) {
-        case sf::Event::Closed:
+        if (event.type == sf::Event::Closed) {
             window.close();
-            break;
-        case sf::Event::LostFocus:
-            hasFocus = false;
-            break;
-        case sf::Event::GainedFocus:
+        }
+        else if (event.type == sf::Event::GainedFocus) {
             hasFocus = true;
-            break;
-        default:
-            break;
+        }
+        else if (event.type == sf::Event::LostFocus) {
+            hasFocus = false;
         }
     }
 }
-
 void Game::update(float dt) {
     if (hasFocus) {
         using kb = sf::Keyboard;
+        using ms = sf::Mouse;
 
         float moveForward = 0.0f;
-        if (kb::isKeyPressed(kb::Up)) {
+        if (kb::isKeyPressed(kb::W)) {
             moveForward = 1.0f;
         }
-        else if (kb::isKeyPressed(kb::Down)) {
+        else if (kb::isKeyPressed(kb::S)) {
             moveForward = -1.0f;
         }
         player.move(moveForward, dt, map);
 
-        float rotateDirection = 0.0f;
-        if (kb::isKeyPressed(kb::Left)) {
-            rotateDirection = -1.0f;
+        float moveSideways = 0.0f;
+        if (kb::isKeyPressed(kb::A)) {
+            moveSideways = -1.0f;
         }
-        else if (kb::isKeyPressed(kb::Right)) {
-            rotateDirection = 1.0f;
+        else if (kb::isKeyPressed(kb::D)) {
+            moveSideways = 1.0f;
         }
+        player.strafe(moveSideways, dt, map);
+
+        // Process mouse movement
+        sf::Vector2i mousePosition = ms::getPosition(window);
+        sf::Vector2i windowCenter(window.getSize().x / 2, window.getSize().y / 2);
+        sf::Vector2i mouseDelta = mousePosition - windowCenter;
+
+        float rotateDirection = static_cast<float>(mouseDelta.x) * 0.01f; // Adjust sensitivity as needed
         player.rotate(rotateDirection, dt);
+
+        // Reset mouse position to the center of the window
+        ms::setPosition(windowCenter, window);
     }
 
     dt_counter += dt;
