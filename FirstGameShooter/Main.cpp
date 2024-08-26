@@ -1,18 +1,8 @@
-#include<iostream>
-#include "WinForm.h"
+// main.cpp
+#include "Game.h"
 
-using namespace std;
-
-int main(int argc, char* argv[])
-{
-	const wchar_t* title = L"First Game Shooter";
-
-	WinForm form(800, 600);
-	form.title = title;
-
-	while (form.getIsOpen())
-	{
-		form.update();
-		form.render();
-	}
+int main() {
+    Game game;
+    game.run();
+    return EXIT_SUCCESS;
 }
