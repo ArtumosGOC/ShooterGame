@@ -2,17 +2,22 @@
 #include "Player.h"
 #include <cmath>
 
+float Player::getmoveSpeed()
+{
+    return moveSpeed;
+}
+
 Player::Player()
     : position(2.5f, 2.0f), direction(0.0f, 1.0f), plane(-0.66f, 0.0f), size(0.375f, 0.375f), moveSpeed(5.0f), rotateSpeed(3.0f) {}
 
-void Player::move(float moveForward, float dt, const Map& map) {
+void Player::move(float moveForward, float dt, const Map& map, float shift) {
     if (moveForward != 0.0f) {
         sf::Vector2f moveVec = direction * moveSpeed * moveForward * dt;
         if (map.canMove(sf::Vector2f(position.x + moveVec.x, position.y), size)) {
-            position.x += moveVec.x;
+            position.x += moveVec.x * shift;
         }
         if (map.canMove(sf::Vector2f(position.x, position.y + moveVec.y), size)) {
-            position.y += moveVec.y;
+            position.y += moveVec.y * shift;
         }
     }
 }

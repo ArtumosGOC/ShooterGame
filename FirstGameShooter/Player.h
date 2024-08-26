@@ -13,10 +13,11 @@ public:
     sf::Vector2f size;
     float moveSpeed;
     float rotateSpeed;
+	float getmoveSpeed();
 
     Player();
 
-    void move(float moveForward, float dt, const Map& map);
+    void move(float moveForward, float dt, const Map& map,float shift);
     void strafe(float moveSideways, float dt, const Map& map);
     void rotate(float rotateDirection, float dt);
 };
