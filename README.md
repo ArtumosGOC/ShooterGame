@@ -2,6 +2,10 @@
 
 Este é um pequeno projeto de um jogo de tiro desenvolvido em C++ usando a biblioteca SFML. O objetivo do jogo é eliminar todos os inimigos antes que eles te acertem.
 
+Estou aprendendo a usar a técnica de raycasting, esse source e baseado em um post no próprio [forum](https://en.sfml-dev.org/forums/index.php?topic=19667.0) da lib SFML.
+
+No mesmo, a `main` é um codígo só, então resolvi separar em classes, para facilitar o entendimento.
+
 ## Como utilizar
 
 1. Certifique-se de ter o compilador C++ instalado em seu sistema.
