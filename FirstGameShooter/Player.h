@@ -4,6 +4,7 @@
 
 #include <SFML/System.hpp>
 #include "Map.h"
+#include "Weapon.h"
 
 class Player {
 public:
@@ -13,12 +14,16 @@ public:
     sf::Vector2f size;
     float moveSpeed;
     float rotateSpeed;
-	float getmoveSpeed();
 
+    Weapon weapon;
+	
+    float getmoveSpeed();
     Player();
 
-    void move(float moveForward, float dt, const Map& map,float shift);
+    
+    void move(float moveForward, float dt, const Map& map, float shift);
     void strafe(float moveSideways, float dt, const Map& map);
     void rotate(float rotateDirection, float dt);
+    void shoot(sf::RenderTarget& window);
 };
 #endif // PLAYER_H

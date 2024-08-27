@@ -35,6 +35,10 @@ void Player::rotate(float rotateDirection, float dt) {
         );
     }
 }
+void Player::shoot(sf::RenderTarget& window)
+{
+	weapon.shoot(window);
+}
 void Player::strafe(float moveSideways, float dt, const Map& map) {
     if (moveSideways != 0.0f) {
         sf::Vector2f moveVec = plane * moveSpeed * moveSideways * dt;
