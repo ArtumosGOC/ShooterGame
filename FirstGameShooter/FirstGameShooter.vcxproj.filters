@@ -42,6 +42,9 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>Arquivos de Origem\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Weapon.cpp">
+      <Filter>Arquivos de Origem\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\adventure3d\data\texture\walls.png">
@@ -64,6 +67,9 @@
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Weapon.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
