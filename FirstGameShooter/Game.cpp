@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 Game::Game()
-    : window(sf::VideoMode(1280 + 1, 720), "Adventure 3D"), lines(sf::Lines, 18 * 1280), dt_counter(0.0f), frame_counter(0), frame_time_micro(0), hasFocus(true) {
+    : window(sf::VideoMode(1280 + 1, 720), "ShooterGame"), lines(sf::Lines, 18 * 1280), dt_counter(0.0f), frame_counter(0), frame_time_micro(0), hasFocus(true) {
     window.setSize(sf::Vector2u(1280, 720));
     window.setFramerateLimit(60);
 
@@ -48,13 +48,18 @@ void Game::handleEvents() {
         else if (event.type == sf::Event::LostFocus) {
             hasFocus = false;
         }
+        if (event.type == sf::Event::MouseButtonPressed && event.key.code == sf::Mouse::Left) {
+            player.shoot(window);
+			printf("Shoot\n");
+        }
     }
 }
 void Game::update(float dt) {
+    player.weapon.update(dt);
     if (hasFocus) {
         using kb = sf::Keyboard;
         using ms = sf::Mouse;
-        shit_value = 0.8;
+        shit_value = 0.8f;
 
         float moveForward = 0.0f;
 		if (kb::isKeyPressed(kb::LShift)){
