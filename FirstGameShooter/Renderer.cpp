@@ -131,6 +131,13 @@ void Renderer::render(sf::RenderWindow& window, const Map& map, const Player& pl
 
     window.clear();
     window.draw(lines, state);
+    renderWeapon(window, player);
     window.draw(fpsText);
     window.display();
+}
+
+void Renderer::renderWeapon(sf::RenderWindow& window, const Player& player)
+{
+	Player p = player;
+	p.shoot(window);
 }
